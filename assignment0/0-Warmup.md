@@ -21,7 +21,7 @@ Please provide answers to these questions using markdown notation and place them
 
 1. Select with an `x` the platform you will be using for your course deliverables:
 
-    - [ ] drexel's tux cluster
+    - [x] drexel's tux cluster
     - [ ] WSL on Windows
     - [ ] Orbstack on MacOs
     - [ ] VMWare Fusion
@@ -30,12 +30,17 @@ Please provide answers to these questions using markdown notation and place them
 2. I have installed my virtual machine, tested it, feel comfortable using it, and validated that the required software is installed:
 
     - [ ] YES
-    - [ ] N/A - I plan to use tux
+    - [x] N/A - I plan to use tux
     - [ ] NO - Not Yet
 
 
 3. Please provide a link to the repository you are using for this class.
+   [Link to my repository](https://github.com/landonchow222/CS283/)
 
-4. Briefly describe what you want to get out of this class.
+5. Briefly describe what you want to get out of this class.
 
-5. Briefly describe any concerns you might be having with being successful in this class (if any).
+   I have taken a Linux introduction course last semester, and I enjoyed it a lot. Through this course, I hope to gain a deeper understanding of Linux environment and coding in Linux system. 
+
+7. Briefly describe any concerns you might be having with being successful in this class (if any).
+   
+   I have not taken data structure course yet, i am worried that I will have a hard time to implement complex coding practices. Fortunately, I am also taking data structure this semester, hope I can exert all the knowledges I learn from both course to hone my coding skill. 
