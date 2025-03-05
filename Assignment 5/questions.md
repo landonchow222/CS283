@@ -1,0 +1,15 @@
+1. Your shell forks multiple child processes when executing piped commands. How does your implementation ensure that all child processes complete before the shell continues accepting user input? What would happen if you forgot to call waitpid() on all child processes?
+
+The `waitpid()` command, along with the process ID, ensures that each child process finishes execution before the shell resumes accepting user input. Failing to invoke `waitpid()` for all child processes can disrupt the proper functioning of pipes, as they rely on sequential execution. Additionally, neglecting this step may lead to zombie child processes and instances where some child processes do not execute properly, particularly due to the `free_command_list()` function.
+
+2. The dup2() function is used to redirect input and output file descriptors. Explain why it is necessary to close unused pipe ends after calling dup2(). What could go wrong if you leave pipes open?
+
+Closing unused pipes is essential because Linux imposes limits on the number of file descriptors. Failing to close a file descriptor can result in resource leaks, as open file descriptors continue to consume system resources. If left unclosed, these resources remain allocated until the program exits, potentially leading to a gradual depletion of available system resources. This can degrade system performance or even cause crashes. Therefore, it is crucial to close file descriptors once they are no longer needed.
+
+3. Your shell recognizes built-in commands (cd, exit, dragon). Unlike external commands, built-in commands do not require execvp(). Why is cd implemented as a built-in rather than an external command? What challenges would arise if cd were implemented as an external process?
+
+The `cd` command is designed as a shell built-in because the shell itself is how programmers interact with the operating system. Since the shell runs as its own process, implementing `cd` as an external command would have no effect on the shell’s working directory. This is because a separate process cannot directly alter the working directory of its parent process. Therefore, to allow users to change directories within the shell session, `cd` must be integrated into the shell rather than executed as an independent process.
+
+4. Currently, your shell supports a fixed number of piped commands (CMD_MAX). How would you modify your implementation to allow an arbitrary number of piped commands while still handling memory allocation efficiently? What trade-offs would you need to consider?
+
+To modify our implementation to support an arbitrary number of piped commands while maintaining efficient memory management, I would initially allocate memory using `malloc()` and dynamically expand it using `realloc()` as needed. However, the trade-off of repeatedly using `realloc()` is a potential decrease in execution speed, especially as the allocated memory grows. Additionally, frequent reallocations could lead to heap fragmentation or, in extreme cases, exhaustion of available heap memory.
